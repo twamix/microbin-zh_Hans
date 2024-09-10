@@ -305,7 +305,7 @@ pub async fn getrawpasta(
 
         // send raw content of pasta
         let response = Ok(HttpResponse::NotFound()
-            .content_type("text/plain")
+            .content_type("text/plain; charset=utf-8")
             .body(pastas[index].content.to_owned()));
 
         return response;
@@ -313,8 +313,8 @@ pub async fn getrawpasta(
 
     // otherwise send pasta not found error as raw text
     Ok(HttpResponse::NotFound()
-        .content_type("text/html")
-        .body(String::from("Upload not found! :-(")))
+        .content_type("text/html; charset=utf-8")
+        .body(String::from("剪贴板不存在！")))
 }
 
 #[post("/raw/{id}")]
