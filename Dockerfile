@@ -32,10 +32,10 @@ COPY --from=build \
 
 # copy built executable
 COPY --from=build \
-  /app/target/release/microbin \
-  /usr/bin/microbin
+  /app/target/release/microbin-zh_Hans \
+  /usr/bin/microbin-zh_Hans
 
 # Expose webport used for the webserver to the docker runtime
 EXPOSE 8080
 
-ENTRYPOINT ["microbin"]
+ENTRYPOINT ["microbin-zh_Hans"]
