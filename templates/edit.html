@@ -3,7 +3,7 @@
     <h4>
         编辑剪贴板： '{{ pasta.id_as_animals() }}'
     </h4>
-    <label>内容：</label>
+    <label for="content">内容：</label>
     <br>
     <textarea style="width: 100%; min-height: 100px; font-family: monospace;" name="content" id="content" {% if status
         !="incorrect" %} autofocus {% endif %}>{{ pasta.content_escaped() }}</textarea>
