@@ -142,7 +142,7 @@
         {%- endif %}
 
         <div>
-            <label for="syntax_highlight">隐私级别 <sup> <a href="/guide#privacy">﹖</a></sup></label><br>
+            <label for="privacy">隐私级别 <sup> <a href="/guide#privacy">﹖</a></sup></label><br>
             <select style="width: 100%;" name="privacy" id="privacy">
                 <optgroup label="不加密 (无密码)">
                     <option value="public">公开</option>
@@ -177,9 +177,9 @@
 
     </div>
 
-    <label>内容：</label>
+    <label for="content-input">内容：</label>
     <textarea style="width: 100%; min-height: 100px; margin-bottom: 2em; font-family: monospace;" id="content-input"
-        autofocus placeholder="Type something here."></textarea>
+        autofocus placeholder="在此处输入信息."></textarea>
     <div>
         {% if !args.no_file_upload %}
         <div id="file-select">
