@@ -64,13 +64,13 @@ pub async fn post_admin(
     let mut message = "";
 
     if ARGS.public_path.is_none() {
-        status = "WARNING";
-        message = "Warning: No public URL set with --public-path parameter. QR code and URL Copying functions have been disabled"
+        status = "警告";
+        message = "警告: 未配置 public_path 参数设置站点链接。二维码和剪贴板链接复制功能已被禁用。"
     }
 
     if ARGS.auth_admin_username == "admin" && ARGS.auth_admin_password == "m1cr0b1n" {
-        status = "WARNING";
-        message = "Warning: You are using the default admin login details. This is a security risk, please change them."
+        status = "警告";
+        message = "警告: 您正在使用默认管理员账号密码登录后台！这存在安全风险，请尽快更改！"
     }
 
     let update;

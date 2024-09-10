@@ -5,19 +5,18 @@
 <form id="auth-form" method="POST" action="/{{path}}/{{id}}" enctype="multipart/form-data">
   {% if status == "success" %}
   <b>
-    Success!
+    创建成功!
   </b> <br>
   {% endif %}
-  <label for="password"> Please enter the
-    password to access or modify this upload. <sup>
+  <label for="password"> 请输入访问密码：<sup>
       <a href="/guide#encryption">﹖</a></sup></label>
   <input id="password-field" required placeholder="Password" type="password" autocomplete="off">
   <input id="password-hidden" name="password" type="hidden">
-  <button>Okay</button>
+  <button>确 定</button>
 
   {% if status == "incorrect" %}
   <b>
-    Incorrect password.
+    密码错误.
   </b>
   {% endif %}
 </form>
@@ -63,18 +62,17 @@
 <form id="auth-form" method="POST" action="/{{path}}/{{id}}" enctype="multipart/form-data">
   {% if status == "success" %}
   <b>
-    Success!
+    创建成功!
   </b> <br>
   {% endif %}
-  <label for="password" style="margin-bottom: 0.5rem;"> Please enter the
-    password to access or modify this upload. <sup>
+  <label for="password" style="margin-bottom: 0.5rem;"> 请输入访问密码：<sup>
       <a href="/guide#encryption">﹖</a></sup></label>
   <input id="password-field" placeholder="Password" name="password" type="password" autocomplete="off" />
-  <button>Okay</button>
+  <button>确 定</button>
 
   {% if status == "incorrect" %}
   <b>
-    Incorrect password.
+    密码错误.
   </b>
   {% endif %}
 </form>

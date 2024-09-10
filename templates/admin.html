@@ -1,55 +1,57 @@
 {% include "header.html" %}
 
-<h2>Welcome to MicroBin</h2>
+<h2>MicroBin-管理后台</h2>
 <div style="height: 200px;">
     <div style="float: left">
-        <h4>Links</h4>
-        <a href="https://microbin.eu/documentation" style="margin-right: 1rem">Documentation and Help</a>
+        <h4>支持</h4>
+        <a href="https://microbin.eu/docs/intro" style="margin-right: 1rem">帮助文档</a>
         <br>
-        <a href="https://github.com/szabodanika/microbin" style="margin-right: 1rem">Source Code</a>
+        <a href="https://github.com/szabodanika/microbin" style="margin-right: 1rem">官方Github仓库</a>
         <br>
-        <a href="https://github.com/szabodanika/microbin/issues" style="margin-right: 1rem">Feedback</a>
+        <a href="https://github.com/kyleyh838/microbin-zh_Hans" style="margin-right: 1rem">汉化Github仓库</a>
         <br>
-        <a href="https://microbin.eu/donate">Donate and Sponsor</a>
+        <a href="https://github.com/szabodanika/microbin/issues" style="margin-right: 1rem">建议反馈</a>
+        <br>
+        <a href="https://microbin.eu/sponsorship">捐赠/赞助</a>
     </div>
 
     <div style="float: right">
-        <h4>Info</h4>
+        <h4>站点信息</h4>
         <table style="width: 400px">
             <tr>
-                <td><b>Version</b></td>
+                <td><b>版本</b></td>
                 <td>{{version_string}} </td>
             </tr>
             <tr>
-                <td><b>Status</b></td>
+                <td><b>状态</b></td>
                 <td>{{status}} </td>
             </tr>
             <tr>
-                <td><b>Uploads</b></td>
+                <td><b>现存条目</b></td>
                 <td>{{pastas.len()}} </td>
             </tr>
         </table>
     </div>
 </div>
 
-<h4>Update</h4>
+<h4>更新</h4>
 {% if update.is_some() %}
 <p><b>Update available</b> {{update.as_ref().unwrap().long_title}}</p>
 <p><b>Date</b> {{update.as_ref().unwrap().date}}</p>
 <p><b>Update type</b> {{update.as_ref().unwrap().update_type}}</p>
 <p><b>Description</b> {{update.as_ref().unwrap().description}}</p>
 {%- else %}
-<p>No updates available.</p>
+<p>暂无可用更新</p>
 {%- endif %}
 
 
 {% if message != "" %}
-<h4>Messages</h4>
+<h4>消息</h4>
 <p>{{message}}</p>
 {%- endif %}
 
 
-<h3>Uploads</h3>
+<h3>条目</h3>
 {% if args.pure_html %}
 <table border="1" style="width: 100%;">
     {% else %}
@@ -57,28 +59,28 @@
         {% endif %}
         <thead>
             <th style="width: 15%;">
-                Key
+                剪贴板
             </th>
             <th style="width: 15%;">
-                Valid
+                有效期
             </th>
             <th style="width: 8%;">
-                Size
+                数据大小
             </th>
             <th>
-                Encryption
+                加密类型
             </th>
             <th style="width: 5%;">
-                Priv.
+                私有
             </th>
             <th style="width: 5%;">
-                Edit.
+                可编辑
             </th>
             <th style="width: 8%;">
-                Content
+                内容
             </th>
             <th>
-                Hits
+                读取信息
             </th>
             <th style="width: 8%;">
                 <!-- Actions -->
@@ -102,58 +104,62 @@
                 </td>
                 <td>
                     {% if pasta.encrypt_client %}
-                    CLIENT
+                    客户端
                     {%- endif %}
                     {% if pasta.encrypt_client && pasta.encrypt_server%}
                     +
                     {%- endif %}
                     {% if pasta.encrypt_server %}
-                    SERVER
+                    服务器端
                     {%- endif %}
                 </td>
                 <td>
                     {% if pasta.private %}
                     ✔️
+                    {%- else %}
+                    ❌
                     {%- endif %}
                 </td>
                 <td>
                     {% if pasta.editable %}
                     ✔️
+                    {%- else %}
+                    ❌
                     {%- endif %}
                 </td>
                 <td>
                     {% if pasta.content != "" %}
                     <a style="margin-right:1rem"
-                        href="{{ args.public_path_as_str()}}/raw/{{pasta.id_as_animals()}}">Text</a>
+                        href="{{ args.public_path_as_str()}}/raw/{{pasta.id_as_animals()}}">文本</a>
                     {%- endif %}
                     {% if pasta.file.is_some() %}
                     <a style="margin-right:1rem" href="{{ args.public_path_as_str() }}/file/{{pasta.id_as_animals()}}">
                         {% if pasta.file.as_ref().unwrap().is_image() %}
-                        Image
+                        图像
                         {%- else if pasta.file.as_ref().unwrap().is_video() %}
-                        Video
+                        视频
                         {%- else %}
-                        File
+                        文件
                         {%- endif %}
                     </a>
                     {%- endif %}
                 </td>
                 <td>
                     {% if args.show_read_stats %} {% if pasta.read_count == 1 %}
-                    <span style="font-size: small">{{pasta.read_count}} hits <br> last
+                    <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近：
                         {{pasta.short_last_read_time_ago_as_string()}}</span>
                     {%- else %}
-                    <span style="font-size: small">{{pasta.read_count}} hits <br> last
+                    <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近：
                         {{pasta.short_last_read_time_ago_as_string()}}</span>
                     {%- endif %} {%- endif %}
                 </td>
                 <td>
                     {% if pasta.editable %}
                     <a style="margin-right:1rem" href="{{ args.public_path_as_str()
-                    }}/edit/{{pasta.id_as_animals()}}">Edit</a>
+                    }}/edit/{{pasta.id_as_animals()}}">编辑</a>
                     <br>
                     {%- endif %}
-                    <a href="{{ args.public_path_as_str() }}/remove/{{pasta.id_as_animals()}}">Remove</a>
+                    <a href="{{ args.public_path_as_str() }}/remove/{{pasta.id_as_animals()}}">删除</a>
                 </td>
 
             </tr>
@@ -162,7 +168,7 @@
         </tbody>
     </table>
     <br>
-    <h3>URL Redirects</h3>
+    <h3>URL 重定向</h3>
     {% if args.pure_html %}
     <table border="1" style="width: 100%;">
         {% else %}
@@ -170,25 +176,25 @@
             {% endif %}
             <thead>
                 <th style="width: 15%;">
-                    Key
+                    剪贴板
                 </th>
                 <th style="width: 15%;">
-                    Valid
+                    有效期
                 </th>
                 <th>
-                    Encryption
+                    加密类型
                 </th>
                 <th style="width: 5%;">
-                    Priv.
+                    私有
                 </th>
                 <th style="width: 5%;">
-                    Edit.
+                    可编辑
                 </th>
                 <th style="width: 8%;">
-                    Content
+                    内容
                 </th>
                 <th>
-                    Hits
+                    读取信息
                 </th>
                 <th style="width: 8%;">
                     <!-- Actions -->
@@ -209,59 +215,63 @@
                     </td>
                     <td>
                         {% if pasta.encrypt_client %}
-                        CLIENT
+                        客户端
                         {%- endif %}
                         {% if pasta.encrypt_client && pasta.encrypt_server%}
                         +
                         {%- endif %}
                         {% if pasta.encrypt_server %}
-                        SERVER
+                        服务器端
                         {%- endif %}
                     </td>
                     <td>
                         {% if pasta.private %}
                         ✔️
+                        {%- else %}
+                        ❌
                         {%- endif %}
                     </td>
                     <td>
                         {% if pasta.editable %}
                         ✔️
+                        {%- else %}
+                        ❌
                         {%- endif %}
                     </td>
                     <td>
                         {% if pasta.content != "" %}
                         <a style="margin-right:1rem"
-                            href="{{ args.public_path_as_str()}}/raw/{{pasta.id_as_animals()}}">Text</a>
+                            href="{{ args.public_path_as_str()}}/raw/{{pasta.id_as_animals()}}">文本</a>
                         {%- endif %}
                         {% if pasta.file.is_some() %}
                         <a style="margin-right:1rem"
                             href="{{ args.public_path_as_str() }}/file/{{pasta.id_as_animals()}}">
                             {% if pasta.file.as_ref().unwrap().is_image() %}
-                            Image
+                            图像
                             {%- else if pasta.file.as_ref().unwrap().is_video() %}
-                            Video
+                            视频
                             {%- else %}
-                            File
+                            文件
                             {%- endif %}
                         </a>
                         {%- endif %}
                     </td>
                     <td>
                         {% if args.show_read_stats %} {% if pasta.read_count == 1 %}
-                        <span style="font-size: small">{{pasta.read_count}} hits <br> last
+                        <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近：
                             {{pasta.short_last_read_time_ago_as_string()}}</span>
                         {%- else %}
-                        <span style="font-size: small">{{pasta.read_count}} hits <br> last
+                        <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近：
                             {{pasta.short_last_read_time_ago_as_string()}}</span>
                         {%- endif %} {%- endif %}
                     </td>
                     <td>
                         {% if pasta.editable %}
                         <a style="margin-right:1rem" href="{{ args.public_path_as_str()
-                    }}/edit/{{pasta.id_as_animals()}}">Edit</a>
+                    }}/edit/{{pasta.id_as_animals()}}">编辑</a>
                         <br>
                         {%- endif %}
-                        <a href="{{ args.public_path_as_str() }}/remove/{{pasta.id_as_animals()}}">Remove</a>
+                        <a href="{{ args.public_path_as_str() }}/remove/{{pasta.id_as_animals()}}">删除</a>
                     </td>
 
                 </tr>
@@ -272,30 +282,30 @@
         <br>
 
 
-        <h3>Environmental Variables</h3>
+        <h3>环境变量</h3>
         <table>
             <thead>
                 <tr>
-                    <th style="width: 35%">Argument</th>
-                    <th style="width: 15%">Value</th>
-                    <th style="width: 35%">Argument</th>
-                    <th style="width: 15%">Value</th>
+                    <th style="width: 35%">变量名</th>
+                    <th style="width: 15%">值</th>
+                    <th style="width: 35%">变量名</th>
+                    <th style="width: 15%">值</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>auth_basic_username</td>
                     {% if args.auth_basic_username.as_ref().is_some() %}
-                    <td>set</td>
+                    <td>已配置</td>
                     {% else %}
-                    <td>unset</td>
+                    <td>未配置</td>
                     {% endif %}
 
                     <td>auth_basic_password</td>
                     {% if args.auth_basic_password.as_ref().is_some() %}
-                    <td>set</td>
+                    <td>已配置</td>
                     {% else %}
-                    <td>unset</td>
+                    <td>未配置</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -306,7 +316,7 @@
                     {% if args.footer_text.as_ref().is_some() %}
                     <td>{{ args.footer_text.as_ref().unwrap() }}</td>
                     {% else %}
-                    <td>unset</td>
+                    <td>未配置</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -344,13 +354,13 @@
                     {% if args.public_path.as_ref().is_some() %}
                     <td>{{ args.public_path_as_str() }}</td>
                     {% else %}
-                    <td>unset</td>
+                    <td>未配置</td>
                     {% endif %}
                     <td>short_path</td>
                     {% if args.short_path.as_ref().is_some() %}
                     <td>{{ args.short_path_as_str() }}</td>
                     {% else %}
-                    <td>unset</td>
+                    <td>未配置</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -364,7 +374,7 @@
                     {% if args.title.as_ref().is_some() %}
                     <td>{{ args.title.as_ref().unwrap() }}</td>
                     {% else %}
-                    <td>unset</td>
+                    <td>未配置</td>
                     {% endif %}
                     <td>threads</td>
                     <td>{{ args.threads }}</td>
@@ -400,7 +410,7 @@
                     {% if args.custom_css.as_ref().is_some() %}
                     <td>{{ args.custom_css.as_ref().unwrap() }}</td>
                     {% else %}
-                    <td>unset</td>
+                    <td>未配置</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -420,9 +430,9 @@
                     <td>{{ args.max_file_size_unencrypted_mb }} MB</td>
                     <td>uploader_password</td>
                     {% if args.uploader_password.as_ref().is_some() %}
-                    <td>set</td>
+                    <td>已配置</td>
                     {% else %}
-                    <td>unset</td>
+                    <td>未配置</td>
                     {% endif %}
                 </tr>
             </tbody>

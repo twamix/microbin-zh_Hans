@@ -1,14 +1,14 @@
 {% include "header.html" %}
 
 <form id="auth-form" method="POST" action="/admin/" enctype="multipart/form-data">
-  <label for="username"> Administrator username</label>
+  <label for="username"> 管理员账号：</label>
   <input id="username-field" placeholder="Username" type="username" autocomplete="off" name="username">
-  <label for="password"> Administrator password.</label>
+  <label for="password"> 管理员密码：</label>
   <input id="password-field" placeholder="Password" type="password" autocomplete="off" name="password">
-  <button>Sign in</button>
+  <button>登 录</button>
   {% if status == "incorrect" %}
   <p>
-    Incorrect username or password.
+    账号或密码错误！
   </p>
   {% endif %}
 </form>

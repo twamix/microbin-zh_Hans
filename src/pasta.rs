@@ -149,29 +149,29 @@ impl Pasta {
         // get seconds since last read and convert it to days
         let days = ((timenow - self.last_read) / 86400) as u16;
         if days > 1 {
-            return format!("{} days ago", days);
+            return format!("{} 天前", days);
         };
 
         // it's less than 1 day, let's do hours then
         let hours = ((timenow - self.last_read) / 3600) as u16;
         if hours > 1 {
-            return format!("{} hours ago", hours);
+            return format!("{} 小时前", hours);
         };
 
         // it's less than 1 hour, let's do minutes then
         let minutes = ((timenow - self.last_read) / 60) as u16;
         if minutes > 1 {
-            return format!("{} minutes ago", minutes);
+            return format!("{} 分钟前", minutes);
         };
 
         // it's less than 1 minute, let's do seconds then
         let seconds = (timenow - self.last_read) as u16;
         if seconds > 1 {
-            return format!("{} seconds ago", seconds);
+            return format!("{} 秒前", seconds);
         };
 
         // it's less than 1 second?????
-        String::from("just now")
+        String::from("现在")
     }
 
     pub fn short_last_read_time_ago_as_string(&self) -> String {
@@ -187,29 +187,29 @@ impl Pasta {
         // get seconds since last read and convert it to days
         let days = ((timenow - self.last_read) / 86400) as u16;
         if days > 1 {
-            return format!("{} d ago", days);
+            return format!("{} 天前", days);
         };
 
         // it's less than 1 day, let's do hours then
         let hours = ((timenow - self.last_read) / 3600) as u16;
         if hours > 1 {
-            return format!("{} h ago", hours);
+            return format!("{} 小时前", hours);
         };
 
         // it's less than 1 hour, let's do minutes then
         let minutes = ((timenow - self.last_read) / 60) as u16;
         if minutes > 1 {
-            return format!("{} m ago", minutes);
+            return format!("{} 分钟前", minutes);
         };
 
         // it's less than 1 minute, let's do seconds then
         let seconds = (timenow - self.last_read) as u16;
         if seconds > 1 {
-            return format!("{} s ago", seconds);
+            return format!("{} 秒前", seconds);
         };
 
         // it's less than 1 second?????
-        String::from("just now")
+        String::from("现在")
     }
 
     pub fn last_read_days_ago(&self) -> u16 {
