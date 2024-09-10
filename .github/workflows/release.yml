@@ -82,7 +82,7 @@ jobs:
       with:
         use-cross: ${{ matrix.use-cross }}
         command: build
-        args: --locked --release --target=${{ matrix.target }} ${{ matrix.cargo-flags }}
+        args: --release --target=${{ matrix.target }} ${{ matrix.cargo-flags }}
 
     - name: Build Archive
       shell: bash
