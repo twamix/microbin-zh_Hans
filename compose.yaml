@@ -1,5 +1,5 @@
 services:
-  microbin:
+  microbin-zh_hans:
     image: kyle838/microbin-zh_hans:latest
     restart: unless-stopped
     ports:
