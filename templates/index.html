@@ -330,14 +330,14 @@
             if (privacyDropdown.value == "secret") {
                 if (fileSizeMb >
                     parseInt("{{ args.max_file_size_encrypted_mb }}")) {
-                    attachFileButton.textContent = "Please select a file smaller than {{ args.max_file_size_encrypted_mb }} MB";
+                    attachFileButton.textContent = "无法上传，附件超过 {{ args.max_file_size_encrypted_mb }} MB";
                     this.value = "";
                     return true;
                 }
             } else {
                 if (fileSizeMb >
                     parseInt("{{ args.max_file_size_unencrypted_mb }}")) {
-                    attachFileButton.textContent = "Please select a file smaller than {{ args.max_file_size_unencrypted_mb }} MB";
+                    attachFileButton.textContent = "无法上传，附件超过 {{ args.max_file_size_unencrypted_mb }} MB";
                     this.value = "";
                     return true;
                 }
@@ -371,16 +371,16 @@
     }
 
     hiddenFileButton.addEventListener('change', function () {
-        attachFileButton.textContent = "Attached: " + this.files[0].name;
+        attachFileButton.textContent = "附件: " + this.files[0].name;
         fileOversized();
     });
 
     dropContainer.ondragover = dropContainer.ondragenter = function (evt) {
         evt.preventDefault();
         if (hiddenFileButton.files.length == 0) {
-            attachFileButton.textContent = "Drop your file here";
+            attachFileButton.textContent = "将文件拖放到此处";
         } else {
-            attachFileButton.textContent = "Drop your file here to replace " + hiddenFileButton.files[0].name;
+            attachFileButton.textContent = "将文件拖放到此处替换 " + hiddenFileButton.files[0].name;
         }
     };
 
@@ -388,7 +388,7 @@
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(evt.dataTransfer.files[0]);
         hiddenFileButton.files = dataTransfer.files;
-        attachFileButton.textContent = "Attached: " + hiddenFileButton.files[0].name;
+        attachFileButton.textContent = "附件: " + hiddenFileButton.files[0].name;
         evt.preventDefault();
     };
 

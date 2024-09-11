@@ -60,17 +60,17 @@ pub async fn post_admin(
     pastas.sort_by(|a, b| b.created.cmp(&a.created));
 
     // todo status report more sophisticated
-    let mut status = "OK";
-    let mut message = "";
+    let mut status = "良好";
+    let mut message = "Microbin 正常运行中！";
 
     if ARGS.public_path.is_none() {
         status = "警告";
-        message = "警告: 未配置 public_path 参数设置站点链接。二维码和剪贴板链接复制功能已被禁用。"
+        message = "未配置 public_path 参数设置站点链接。二维码分享和复制功能已被禁用！"
     }
 
     if ARGS.auth_admin_username == "admin" && ARGS.auth_admin_password == "m1cr0b1n" {
-        status = "警告";
-        message = "警告: 您正在使用默认管理员账号密码登录后台！这存在安全风险，请尽快更改！"
+        status = "危险";
+        message = "您正在使用默认管理员账号密码登录后台！这存在安全风险，请尽快更改！"
     }
 
     let update;

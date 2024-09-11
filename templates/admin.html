@@ -19,15 +19,15 @@
         <h4>站点信息</h4>
         <table style="width: 400px">
             <tr>
-                <td><b>版本</b></td>
+                <td><b>版本：</b></td>
                 <td>{{version_string}} </td>
             </tr>
             <tr>
-                <td><b>状态</b></td>
+                <td><b>状态：</b></td>
                 <td>{{status}} </td>
             </tr>
             <tr>
-                <td><b>现存条目</b></td>
+                <td><b>现存条目：</b></td>
                 <td>{{pastas.len()}} </td>
             </tr>
         </table>
@@ -74,7 +74,7 @@
                 私有
             </th>
             <th style="width: 5%;">
-                可编辑
+                编辑
             </th>
             <th style="width: 8%;">
                 内容
@@ -146,10 +146,10 @@
                 </td>
                 <td>
                     {% if args.show_read_stats %} {% if pasta.read_count == 1 %}
-                    <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近：
+                    <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近:
                         {{pasta.short_last_read_time_ago_as_string()}}</span>
                     {%- else %}
-                    <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近：
+                    <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近:
                         {{pasta.short_last_read_time_ago_as_string()}}</span>
                     {%- endif %} {%- endif %}
                 </td>
@@ -188,7 +188,7 @@
                     私有
                 </th>
                 <th style="width: 5%;">
-                    可编辑
+                    编辑
                 </th>
                 <th style="width: 8%;">
                     内容
@@ -258,10 +258,10 @@
                     </td>
                     <td>
                         {% if args.show_read_stats %} {% if pasta.read_count == 1 %}
-                        <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近：
+                        <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近:
                             {{pasta.short_last_read_time_ago_as_string()}}</span>
                         {%- else %}
-                        <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近：
+                        <span style="font-size: small">{{pasta.read_count}} 读取 <br> 最近:
                             {{pasta.short_last_read_time_ago_as_string()}}</span>
                         {%- endif %} {%- endif %}
                     </td>
