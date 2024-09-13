@@ -52,51 +52,6 @@
                 {%- endif %}
             </select>
         </div>
-        {% if args.enable_burn_after %}
-        <div>
-            <label for="burn_after">销毁策略 <sup> <a href="/guide#burn-after">﹖</a></sup></label><br>
-            <select style="width: 100%;" name="burn_after" id="burn_after">
-                {% if args.default_burn_after == 0 %}
-                <option selected value="0">
-                    {%- else %}
-                <option value="0">
-                    {%- endif %} 不限制
-                </option>
-                <optgroup label="到达销毁">
-                    {% if args.default_burn_after == 1 %}
-                    <option selected value="1">
-                        {%- else %}
-                    <option value="1">
-                        {%- endif %} 读取 1 次
-                    </option>
-                    {% if args.default_burn_after == 10 %}
-                    <option selected value="10">
-                        {%- else %}
-                    <option value="10">
-                        {%- endif %} 读取 10 次
-                    </option>
-                    {% if args.default_burn_after == 100 %}
-                    <option selected value="100">
-                        {%- else %}
-                    <option value="100">
-                        {%- endif %} 读取 100 次
-                    </option>
-                    {% if args.default_burn_after == 1000 %}
-                    <option selected value="1000">
-                        {%- else %}
-                    <option value="1000">
-                        {%- endif %} 读取 1000 次
-                    </option>
-                    {% if args.default_burn_after == 10000 %}
-                    <option selected value="10000">
-                        {%- else %}
-                    <option value="10000">
-                        {%- endif %} 读取 10000 次
-                    </option>
-                </optgroup>
-            </select>
-        </div>
-        {%- endif %}
 
         {% if args.highlightsyntax %}
         <div>
@@ -167,6 +122,52 @@
                 {%- endif %}
             </select>
         </div>
+
+        {% if args.enable_burn_after %}
+        <div>
+            <label for="burn_after">销毁策略 <sup> <a href="/guide#burn-after">﹖</a></sup></label><br>
+            <select style="width: 100%;" name="burn_after" id="burn_after">
+                {% if args.default_burn_after == 0 %}
+                <option selected value="0">
+                    {%- else %}
+                <option value="0">
+                    {%- endif %} 不限制
+                </option>
+                <optgroup label="到达销毁">
+                    {% if args.default_burn_after == 1 %}
+                    <option selected value="1">
+                        {%- else %}
+                    <option value="1">
+                        {%- endif %} 读取 1 次
+                    </option>
+                    {% if args.default_burn_after == 10 %}
+                    <option selected value="10">
+                        {%- else %}
+                    <option value="10">
+                        {%- endif %} 读取 10 次
+                    </option>
+                    {% if args.default_burn_after == 100 %}
+                    <option selected value="100">
+                        {%- else %}
+                    <option value="100">
+                        {%- endif %} 读取 100 次
+                    </option>
+                    {% if args.default_burn_after == 1000 %}
+                    <option selected value="1000">
+                        {%- else %}
+                    <option value="1000">
+                        {%- endif %} 读取 1000 次
+                    </option>
+                    {% if args.default_burn_after == 10000 %}
+                    <option selected value="10000">
+                        {%- else %}
+                    <option value="10000">
+                        {%- endif %} 读取 10000 次
+                    </option>
+                </optgroup>
+            </select>
+        </div>
+        {%- endif %}
 
         {% if args.encryption_client_side || args.encryption_server_side || args.enable_readonly %}
         <div>
@@ -389,6 +390,7 @@
         dataTransfer.items.add(evt.dataTransfer.files[0]);
         hiddenFileButton.files = dataTransfer.files;
         attachFileButton.textContent = "附件: " + hiddenFileButton.files[0].name;
+        fileOversized();
         evt.preventDefault();
     };
 
