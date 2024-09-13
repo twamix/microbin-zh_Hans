@@ -165,26 +165,23 @@ pub async fn create(
 
                 continue;
             }
-            "burn_after" => {
-                while let Some(chunk) = field.try_next().await? {
-                    new_pasta.burn_after_reads = match std::str::from_utf8(&chunk).unwrap() {
-                        // give an extra read because the user will be
-                        // redirected to the pasta page automatically
-                        "1" => 2,
-                        "10" => 10,
-                        "100" => 100,
-                        "1000" => 1000,
-                        "10000" => 10000,
-                        "0" => 0,
-                        _ => {
-                            log::error!("{}", "Unexpected burn after value!");
-                            0
-                        }
-                    };
-                }
-
-                continue;
-            }
+            "burn_after" => {  
+                while let Some(chunk) = field.try_next().await? {  
+                    let chunk_str = std::str::from_utf8(&chunk).unwrap();  
+                    new_pasta.burn_after_reads = match chunk_str {  
+                        "1" => if new_pasta.encrypt_server { 2 } else { 3 },  
+                        "10" => if new_pasta.encrypt_server { 11 } else { 12 },  
+                        "100" => if new_pasta.encrypt_server { 101 } else { 102 },  
+                        "1000" => if new_pasta.encrypt_server { 1001 } else { 1002 },  
+                        "10000" => if new_pasta.encrypt_server { 10001 } else { 10002 },  
+                        "0" => 0,  
+                        _ => {  
+                            log::error!("{}", "Unexpected burn after value!");  
+                            0  
+                        }  
+                    };  
+                }  
+            }  
             "content" => {
                 let mut content = String::from("");
                 while let Some(chunk) = field.try_next().await? {
