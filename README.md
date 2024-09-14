@@ -1,5 +1,8 @@
-
 ![Screenshot](.github/index.png)
+
+### 汉化演示：
+
+![Screenshot](.github/index_zh.jpg)
 
 # MicroBin
 
@@ -16,9 +19,23 @@ MicroBin is a super tiny, feature rich, configurable, self-contained and self-ho
 ### Or host MicroBin yourself
 
 Run our quick docker setup script ([DockerHub](https://hub.docker.com/r/danielszabo99/microbin)):
+
 ```bash
 bash <(curl -s https://microbin.eu/docker.sh)
 ```
+
+***
+
+汉化版Docker安装脚本：
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/kyleyh838/microbin-zh_Hans/master/docker-setup.sh)
+```
+
+> 演示站点:
+> [https://mbdemo.reas.eu.org](https://mbdemo.reas.eu.org/)
+
+***
 
 Or install it manually from [Cargo](https://crates.io/crates/microbin):
 
@@ -76,3 +93,4 @@ You can use MicroBin:
 MicroBin and MicroBin.eu are available under the [BSD 3-Clause License](LICENSE).
 
 © Dániel Szabó 2022-2023
+
