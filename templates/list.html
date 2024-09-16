@@ -63,7 +63,7 @@
                     </td>
                     <td>
                         {% if pasta.content != "" %}
-                        <a style="margin-right:1rem"
+                        <a style="margin-right:0.5rem"
                             href="{{ args.public_path_as_str()}}/raw/{{pasta.id_as_animals()}}">文本</a>
                         {%- endif %}
                         {% if pasta.file.is_some() %}
@@ -82,7 +82,7 @@
 
                     <td>
                         {% if pasta.editable %}
-                        <a style="margin-right:1rem"
+                        <a style="margin-left:1.5rem; margin-right:1rem"
                             href="{{ args.public_path_as_str() }}/edit/{{pasta.id_as_animals()}}">编辑</a>
                         {%- endif %}
                     </td>
@@ -148,7 +148,7 @@
                     </td>
                     <td>
                         {% if pasta.editable %}
-                        <a style="margin-right:1rem"
+                        <a style="margin-left:1.5rem; margin-right:1rem"
                             href="{{ args.public_path_as_str() }}/edit/{{pasta.id_as_animals()}}">编辑</a>
                         {%- endif %}
                     </td>

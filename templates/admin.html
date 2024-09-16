@@ -82,7 +82,7 @@
             <th>
                 读取信息
             </th>
-            <th style="width: 8%;">
+            <th style="width: 7%;">
                 <!-- Actions -->
             </th>
         </thead>
@@ -107,7 +107,7 @@
                     客户端
                     {%- endif %}
                     {% if pasta.encrypt_client && pasta.encrypt_server%}
-                    +
+                    +<br>
                     {%- endif %}
                     {% if pasta.encrypt_server %}
                     服务器端
@@ -131,6 +131,7 @@
                     {% if pasta.content != "" %}
                     <a style="margin-right:1rem"
                         href="{{ args.public_path_as_str()}}/raw/{{pasta.id_as_animals()}}">文本</a>
+                    <br>
                     {%- endif %}
                     {% if pasta.file.is_some() %}
                     <a style="margin-right:1rem" href="{{ args.public_path_as_str() }}/file/{{pasta.id_as_animals()}}">
@@ -196,7 +197,7 @@
                 <th>
                     读取信息
                 </th>
-                <th style="width: 8%;">
+                <th style="width: 7%;">
                     <!-- Actions -->
                 </th>
             </thead>
@@ -218,7 +219,7 @@
                         客户端
                         {%- endif %}
                         {% if pasta.encrypt_client && pasta.encrypt_server%}
-                        +
+                        +<br>
                         {%- endif %}
                         {% if pasta.encrypt_server %}
                         服务器端
@@ -242,6 +243,7 @@
                         {% if pasta.content != "" %}
                         <a style="margin-right:1rem"
                             href="{{ args.public_path_as_str()}}/raw/{{pasta.id_as_animals()}}">文本</a>
+                        <br>
                         {%- endif %}
                         {% if pasta.file.is_some() %}
                         <a style="margin-right:1rem"
