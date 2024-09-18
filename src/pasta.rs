@@ -111,7 +111,7 @@ impl Pasta {
     }
 
     pub fn created_as_string(&self) -> String {
-        let date = Local.timestamp(self.created, 0);
+        let date = Local.timestamp_opt(self.created, 0).single().unwrap_or_else(|| Local::now());
         format!(
             "{:02}-{:02} {:02}:{:02}",
             date.month(),
@@ -125,7 +125,7 @@ impl Pasta {
         if self.expiration == 0 {
             String::from("Never")
         } else {
-            let date = Local.timestamp(self.expiration, 0);
+            let date = Local.timestamp_opt(self.expiration, 0).single().unwrap_or_else(|| Local::now());
             format!(
                 "{:02}-{:02} {:02}:{:02}",
                 date.month(),
