@@ -22,10 +22,7 @@ bash <(curl -s https://microbin.eu/docker.sh)
 汉化版Docker安装脚本：
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/kyleyh838/microbin-zh_Hans/master/docker-setup.sh)
+bash <(curl -s https://raw.githubusercontent.com/twamix/microbin-zh_Hans/master/docker-setup.sh)
 ```
-
-> 演示站点:
-> [https://mbdemo.reas.eu.org](https://mbdemo.reas.eu.org/)
 
 ***
