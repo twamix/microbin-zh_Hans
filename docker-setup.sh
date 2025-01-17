@@ -16,8 +16,8 @@ install_dir=${install_dir:-/usr/share/microbin-zh_Hans}
 # Create directory and download files
 mkdir -p $install_dir
 cd $install_dir
-$download_command https://raw.githubusercontent.com/kyleyh838/microbin-zh_Hans/master/.env
-$download_command https://raw.githubusercontent.com/kyleyh838/microbin-zh_Hans/master/compose.yaml
+$download_command https://raw.githubusercontent.com/twamix/microbin-zh_Hans/master/.env
+$download_command https://raw.githubusercontent.com/twamix/microbin-zh_Hans/master/compose.yaml
 
 # Get public path URL and port from user
 echo -e "\033[1m请输入站点链接 (示例: https://microbin.myserver.net 或 http://localhost:8080):\033[0m"
