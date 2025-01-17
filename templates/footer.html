@@ -1,5 +1,12 @@
 {% if !args.hide_footer %}
 
+<p style="font-size: small; text-align: center;margin-top: 2rem;">
+    {% if args.footer_text.as_ref().is_none() %}
+    Powered by <a href="https://github.com/szabodanika/microbin">MicroBin</a> .
+    {%- else %} {{ args.footer_text.as_ref().unwrap() | safe }} {%-
+    endif %}
+</p>
+
 {%- endif %}
 
 </body>
